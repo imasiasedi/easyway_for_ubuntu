@@ -8,3 +8,5 @@ sudo ./<script_name.sh>
 
 
 1.- Install Vivaldi Browser in Ubuntu
+2.- Install Github Desktop in Ubuntu
+3.- Install VScode in Ubuntu
