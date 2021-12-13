@@ -10,3 +10,5 @@ sudo ./<script_name.sh>
 1.- Install Vivaldi Browser in Ubuntu
 2.- Install Github Desktop in Ubuntu
 3.- Install VScode in Ubuntu
+4.- Install Dockers in Ubuntu
+5.- Install TOR in Ubuntu
