@@ -1,11 +1,11 @@
 #!/bin/bash
 function update(){
-	apt update
-	apt upgrade -y
-	apt autoremove -y
+	apt-get update -y
+	apt-get upgrade -y
+	apt-get autoremove -y
 }
 
-update
+update > /dev/null
 
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 text="deb ${archtype} https://deb.torproject.org/torproject.org/ $(lsb_release -cs) main"
