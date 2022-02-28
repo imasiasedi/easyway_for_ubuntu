@@ -18,6 +18,8 @@ update
 
 apt install mongodb mongodb-clients -y
 
+#sudo ufw allow 27017/tcp
+
 #Mongo Gui (Optional)
 #apt install  gconf-service gconf-service-backend gconf2-common libgconf-2-4
 #wget https://downloads.mongodb.com/compass/mongodb-compass_1.30.1_amd64.deb
