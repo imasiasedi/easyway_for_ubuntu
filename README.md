@@ -12,3 +12,5 @@ sudo ./<script_name.sh>
 3.- Install VScode in Ubuntu
 4.- Install Dockers in Ubuntu
 5.- Install TOR in Ubuntu
+6.- Install Spark
+7.- Install MongoDB
