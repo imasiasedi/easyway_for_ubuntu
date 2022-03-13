@@ -6,14 +6,21 @@ function update(){
 }
 
 update > /dev/null
-
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
-text="deb ${archtype} https://packages.microsoft.com/repos/code stable main"
 
-echo $text >> /etc/apt/sources.list.d/vscode.list
+function install_vscode(){
+	echo "---> Creando APT Source  ... "
+	text="deb ${archtype} https://packages.microsoft.com/repos/code stable main"
+	echo $text >> /etc/apt/sources.list.d/vscode.list
+	echo "---> VScode Key ... "
+	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+	echo "---> Actualizando ... "
+	update > /dev/null
+	echo "---> Instalando Paquetes ... "
+	apt-get install apt-transport-https code -y > /dev/null
+	echo ""
+}
 
-update
-
-apt install apt-transport-https code -y
+echo "Instalando VScode ..."
+install_vscode
+echo "Enjoy 3:)"
