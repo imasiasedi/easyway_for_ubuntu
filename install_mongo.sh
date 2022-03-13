@@ -19,8 +19,9 @@ function install_mongo(){
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "
-	apt-get install mongodb mongodb-clients -y > /dev/null
-	echo ""
+	apt-get install mongodb-org -y > /dev/null
+	echo "---> Levantando Servicios"
+	systemctl start mongod.service 
 }
 
 function security_mongo(){
