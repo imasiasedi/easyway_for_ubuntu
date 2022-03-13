@@ -6,8 +6,6 @@ function update(){
 }
 
 update > /dev/null
-#Consulta arquitectura
-if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
 function install_gith_desk(){
 	echo "---> Creando APT Source  ... "
@@ -22,6 +20,6 @@ function install_gith_desk(){
 	echo ""
 }
 
-echo "Instalando Github Desktop ..."
+echo "Instalando VScode ..."
 install_gith_desk
 echo "Enjoy 3:)"

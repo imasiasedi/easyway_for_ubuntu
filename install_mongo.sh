@@ -1,45 +1,26 @@
 #!/bin/bash
 function update(){
-	apt-get update -y
-	apt-get upgrade -y
-	apt-get autoremove -y
+	apt update
+	apt upgrade -y
+	apt autoremove -y
 }
 
-update > /dev/null
+update
 
 apt-get install gnupg -y
+
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
+text="deb ${archtype} https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/5.0 multiverse"
+echo $text >> /etc/apt/sources.list.d/mongodb.list
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
 
-function install_mongo(){
-	echo "---> Creando APT Source  ... "
-	text="deb ${archtype} https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/5.0 multiverse"
-	echo $text >> /etc/apt/sources.list.d/mongodb.list
-	echo "---> MongoDB Key ... "
-	wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-	echo "---> Actualizando ... "
-	update > /dev/null
-	echo "---> Instalando Paquetes ... "
-	apt-get install mongodb mongodb-clients -y > /dev/null
-	echo ""
-}
+update
 
-function security_mongo(){
-	echo "---> Configurando Firewall  ... "
-	ufw allow 27017/tcp
+apt install mongodb mongodb-clients -y
 
-}
+#sudo ufw allow 27017/tcp
 
-function mongo_gui(){
-	echo "---> Instalando Paquetes  ... "
-	apt-get install  gconf-service gconf-service-backend gconf2-common libgconf-2-4 -y > /dev/null
-	echo "---> Descargando Instalador ... "
-	wget -q https://downloads.mongodb.com/compass/mongodb-compass_1.30.1_amd64.deb
-	echo "---> Instalando Mongo Compass  ... "
-	dpkg -i mongodb-compass_1.30.1_amd64.deb > /dev/null
-}
-
-echo "Instalando MongoDB ..."
-#install_mongo
-#security_mongo
-mongo_gui
-echo "Enjoy 3:)"
+#Mongo Gui (Optional)
+#apt install  gconf-service gconf-service-backend gconf2-common libgconf-2-4
+#wget https://downloads.mongodb.com/compass/mongodb-compass_1.30.1_amd64.deb
+#dpkg -i mongodb-compass_1.30.1_amd64.deb

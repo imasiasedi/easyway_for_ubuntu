@@ -1,11 +1,9 @@
 #!/bin/bash
 function update(){
-	apt-get update -y
-	apt-get upgrade -y
-	apt-get autoremove -y
+	apt update
+	apt upgrade -y
+	apt autoremove -y
 }
-
-update > /dev/null
 
 update
 
