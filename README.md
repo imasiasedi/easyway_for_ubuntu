@@ -16,6 +16,7 @@ sudo ./<script_name.sh>
 6.- Install Spark in Ubuntu
 7.- Install MongoDB in Ubuntu
 8.- Install Chrome in Ubuntu
+9.- Install WPS Office in Ubuntu
 ```
 
 ## Contributing
