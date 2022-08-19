@@ -17,7 +17,7 @@ function install_docker(){
 	text="deb ${archtype} https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	echo $text >> $source_list/docker.list
 	echo "---> Docker Key ... "
-	wget -qO- https://download.docker.com/linux/ubuntu/gpg | gpg --dearmour > $gpgkey_path/docker.gpg
+	wget -qO- https://download.docker.com/linux/ubuntu/gpg | gpg --dearmour -o $gpgkey_path/docker.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "
