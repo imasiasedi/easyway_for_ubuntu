@@ -5,17 +5,19 @@ function update(){
 	apt-get autoremove -y
 }
 
-update > /dev/null
+source_list=/etc/apt/sources.list.d
+gpgkey_path=/etc/apt/trusted.gpg.d
 
-apt-get install gnupg -y
+update > /dev/null
+apt-get install gnupg -y > /dev/null
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
-function install_mongo(){
+function install_mongo(){apt 
 	echo "---> Creando APT Source  ... "
 	text="deb ${archtype} https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/5.0 multiverse"
-	echo $text >> /etc/apt/sources.list.d/mongodb.list
+	echo $text >> $source_list/mongodb.list
 	echo "---> MongoDB Key ... "
-	wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+	wget -qO- https://www.mongodb.org/static/pgp/server-5.0.asc | gpg --dearmour -o $gpgkey_path/mongodb.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "
@@ -34,13 +36,13 @@ function mongo_gui(){
 	echo "---> Instalando Paquetes  ... "
 	apt-get install  gconf-service gconf-service-backend gconf2-common libgconf-2-4 -y > /dev/null
 	echo "---> Descargando Instalador ... "
-	wget -q https://downloads.mongodb.com/compass/mongodb-compass_1.30.1_amd64.deb
+	wget -q https://downloads.mongodb.com/compass/mongodb-compass_1.32.6_amd64.deb
 	echo "---> Instalando Mongo Compass  ... "
-	dpkg -i mongodb-compass_1.30.1_amd64.deb > /dev/null
+	dpkg -i mongodb-compass_1.32.6_amd64.deb > /dev/null
 }
 
 echo "Instalando MongoDB ..."
-#install_mongo
-#security_mongo
+install_mongo
+security_mongo
 mongo_gui
 echo "Enjoy 3:)"
