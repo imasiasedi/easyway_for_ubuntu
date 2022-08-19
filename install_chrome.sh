@@ -5,15 +5,18 @@ function update(){
 	apt-get autoremove -y
 }
 
+source_list=/etc/apt/sources.list.d
+gpgkey_path=/etc/apt/trusted.gpg.d
+
 update > /dev/null
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
 function install_chrome(){
 	echo "---> Creando APT Source  ... "
 	text="deb ${archtype} http://dl.google.com/linux/chrome/deb/ stable main"
-	echo $text >> /etc/apt/sources.list.d/google-chrome.list
+	echo $text >>$source_list/google-chrome.list
 	echo "---> Chrome Key ... "
-	wget -qO- https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+	wget -qO- https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmour > $gpgkey_path/linux_signing_key.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "
