@@ -5,12 +5,24 @@ function update(){
 	apt-get autoremove -y
 }
 
+source_list=/etc/apt/sources.list.d
+gpgkey_path=/etc/apt/trusted.gpg.d
+
 update > /dev/null
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
-text="deb ${archtype} https://deb.torproject.org/torproject.org/ $(lsb_release -cs) main"
-echo $text >> /etc/apt/sources.list.d/tor.list
-wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | apt-key add -
+function install_tor(){
+	echo "---> Creando APT Source  ... "
+	text="deb ${archtype} https://deb.torproject.org/torproject.org/ $(lsb_release -cs) main"
+	echo $text >> $source_list/tor.list
+	echo "---> Tor Key ... "
+	wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmour -o $gpgkey_path/tor.gpg
+	echo "---> Actualizando ... "
+	update > /dev/null
+	echo "---> Instalando Paquetes ... "
+	apt-get installtor tor-geoipdb torsocks deb.torproject.org-keyring -y > /dev/null
+}
 
-update
-sudo apt install tor tor-geoipdb torsocks deb.torproject.org-keyring -y
+echo "Instalando Tor ..."
+install_tor
+echo "Enjoy 3:)"
