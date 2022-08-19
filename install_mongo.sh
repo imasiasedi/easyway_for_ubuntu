@@ -12,7 +12,7 @@ update > /dev/null
 apt-get install gnupg -y > /dev/null
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
-function install_mongo(){apt 
+function install_mongo(){
 	echo "---> Creando APT Source  ... "
 	text="deb ${archtype} https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/5.0 multiverse"
 	echo $text >> $source_list/mongodb.list
