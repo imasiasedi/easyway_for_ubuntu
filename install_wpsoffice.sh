@@ -13,18 +13,19 @@ function wps_office(){
 	dpkg -i $WPS > /dev/null
 	
 	echo "Installing Fonts..."
-	
 	#Microsoft Fonts
 	DEBIAN_FRONTEND=noninteractive apt-get install -qq ttf-mscorefonts-installer > /dev/null
 	fc-cache -f -v > /dev/null
-        
-        #Propias de WPS
+    
+    #Propias de WPS
 	git clone https://github.com/iamdh4/ttf-wps-fonts.git > /dev/null
 	cp ttf-wps-fonts/*.ttf /usr/share/fonts/wps-office/
 
 	echo "Eliminando Fuentes"
 	rm -R ttf-wps-fonts/
 	rm $WPS
+
+	update
 }
 
 echo "Instalando WPS Office ..."
