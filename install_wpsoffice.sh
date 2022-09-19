@@ -25,7 +25,7 @@ function wps_office(){
 	rm -R ttf-wps-fonts/
 	rm $WPS
 
-	update
+	update > /dev/null
 }
 
 echo "Instalando WPS Office ..."
