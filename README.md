@@ -17,6 +17,7 @@ sudo ./<script_name.sh>
 7.- Install MongoDB in Ubuntu
 8.- Install Chrome in Ubuntu
 9.- Install WPS Office in Ubuntu
+9.- Install Lutris in Ubuntu
 ```
 
 ## Contributing
