@@ -20,7 +20,7 @@ function install_xanmod(){
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "
-	apt-get install linux-xanmod -y > /dev/null
+	apt-get install linux-xanmod-x64v3 -y > /dev/null
 	echo ""
 }
 
