@@ -8,16 +8,18 @@ sudo ./<script_name.sh>
 ```
 
 ```bash
-1.- Install Vivaldi Browser in Ubuntu
-2.- Install Github Desktop in Ubuntu
-3.- Install VScode in Ubuntu
-4.- Install Dockers in Ubuntu
-5.- Install TOR in Ubuntu
-6.- Install Spark in Ubuntu
-7.- Install MongoDB in Ubuntu
-8.- Install Chrome in Ubuntu
-9.- Install WPS Office in Ubuntu
-10.- Install Lutris in Ubuntu
+1.- Install Vivaldi Browser for Ubuntu
+2.- Install Github Desktop for Ubuntu
+3.- Install VScode for Ubuntu
+4.- Install Dockers for Ubuntu
+5.- Install TOR for Ubuntu
+6.- Install Spark for Ubuntu
+7.- Install MongoDB for Ubuntu
+8.- Install Chrome for Ubuntu
+9.- Install WPS Office for Ubuntu
+10.- Install Lutris for Ubuntu
+10.- Install XanMod for Ubuntu
+10.- Install WineHQ for Ubuntu
 ```
 
 ## Contributing
