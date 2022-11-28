@@ -18,8 +18,8 @@ sudo ./<script_name.sh>
 8.- Install Chrome for Ubuntu
 9.- Install WPS Office for Ubuntu
 10.- Install Lutris for Ubuntu
-10.- Install XanMod for Ubuntu
-10.- Install WineHQ for Ubuntu
+11.- Install XanMod for Ubuntu
+12.- Install WineHQ for Ubuntu
 ```
 
 ## Contributing

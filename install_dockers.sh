@@ -21,7 +21,7 @@ function install_docker(){
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "
-	apt-get install docker-ce docker-ce-cli containerd.io -y > /dev/null
+	apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y > /dev/null
 	echo "---> Permisos Usuario ... "
 	groupadd docker
 	usermod -aG docker $USER
@@ -31,7 +31,7 @@ function install_docker(){
 
 function install_compose(){
 	#Para instalar compose
-	wget -qO /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-linux-x86_64
+	wget -qO /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-linux-x86_64
 	chmod +x /usr/local/bin/docker-compose
 }
 
