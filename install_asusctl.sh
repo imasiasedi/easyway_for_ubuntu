@@ -8,19 +8,41 @@ function update(){
 
 update > /dev/null
 
-#asusctl
-function install_asusctl(){
-    echo "---> Instalando Dependencias ... "
+#https://asus-linux.org/asusctl/
+function requirements(){
+	echo "---> Instalando Dependencias ... "
     apt-get build-essential cmake libclang-dev libudev-dev libglib2.0-dev libgtk2.0-dev libgtk-3-dev nvidia-driver-525 nvidia-dkms-525 curl -y > /dev/null
-    echo "---> Clonando Repositorios ... "
-    git clone https://gitlab.com/asus-linux/asusctl.git > /dev/null
+    echo "---> Instalando Cargo ... "
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    make
-    make install
     source "$HOME/.cargo/env"
-    systemctl start asusd
+	echo "---> Actualizando Sistema ... "
+	update > /dev/null
 }
 
-echo "Instalando Asusctl for ASUS ROG..."
+#asusctl
+function install_asusctl(){
+    echo "---> Clonando Repositorios ... "
+    git clone https://gitlab.com/asus-linux/asusctl.git > /dev/null
+    cd asusctl
+    make && sudo make install
+    systemctl enable asusd.service --now
+}
+
+#supergfxctl
+function install_supergfxctl(){
+    echo "---> Clonando Repositorios ... "
+    git clone https://gitlab.com/asus-linux/supergfxctl.git > /dev/null
+    cd supergfxctl
+    make && sudo make install
+    systemctl enable supergfxd.service --now
+}
+
+echo "Antes que Nada ... Lo escencial *_*"
+requirements
+echo "Instalando asusctl for ASUS ROG..."
 install_asusctl
+echo "Instalando supergfxctl for ASUS ROG..."
+install_supergfxctl
+echo "Instalar extensión de gnome ..."
+echo "https://extensions.gnome.org/extension/5344/supergfxctl-gex/"
 echo "Enjoy 3:)"
