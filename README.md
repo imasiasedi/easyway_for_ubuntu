@@ -20,6 +20,8 @@ sudo ./<script_name.sh>
 10.- Install Lutris for Ubuntu
 11.- Install XanMod for Ubuntu
 12.- Install WineHQ for Ubuntu
+13.- Install Vbox for Ubuntu
+14.- Install Asusctl (ASUS ROG) for Ubuntu
 ```
 
 ## Contributing
