@@ -8,20 +8,21 @@ sudo ./<script_name.sh>
 ```
 
 ```bash
-1.- Install Vivaldi Browser for Ubuntu
-2.- Install Github Desktop for Ubuntu
-3.- Install VScode for Ubuntu
-4.- Install Dockers for Ubuntu
-5.- Install TOR for Ubuntu
-6.- Install Spark for Ubuntu
-7.- Install MongoDB for Ubuntu
-8.- Install Chrome for Ubuntu
-9.- Install WPS Office for Ubuntu
-10.- Install Lutris for Ubuntu
-11.- Install XanMod for Ubuntu
-12.- Install WineHQ for Ubuntu
-13.- Install Vbox for Ubuntu
-14.- Install Asusctl (ASUS ROG) for Ubuntu
+1.- Vivaldi Browser for Ubuntu
+2.- Github Desktop for Ubuntu
+3.- VScode for Ubuntu
+4.- Dockers for Ubuntu
+5.- TOR for Ubuntu
+6.- Spark for Ubuntu
+7.- MongoDB for Ubuntu
+8.- Chrome for Ubuntu
+9.- WPS Office for Ubuntu
+10.- Lutris for Ubuntu
+11.- XanMod for Ubuntu
+12.- WineHQ for Ubuntu
+13.- Vbox for Ubuntu
+14.- Asusctl (ASUS ROG) for Ubuntu
+15.- Telegram for Ubuntu
 ```
 
 ## Contributing
