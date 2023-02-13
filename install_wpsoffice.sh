@@ -19,7 +19,11 @@ function wps_office(){
     
     #Propias de WPS
 	git clone https://github.com/iamdh4/ttf-wps-fonts.git > /dev/null
-	cp ttf-wps-fonts/*.ttf /usr/share/fonts/wps-office/
+	mv ttf-wps-fonts/* /usr/share/fonts/wps-office/
+
+	sudo rm /usr/share/fonts/wps-office/install.sh
+	sudo rm /usr/share/fonts/wps-office/README.md
+	sudo rm -R /usr/share/fonts/wps-office/.git
 
 	echo "Eliminando Fuentes"
 	rm -R ttf-wps-fonts/
