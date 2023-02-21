@@ -22,6 +22,9 @@ function install_winehq(){
 	echo "---> Instalando Paquetes ... "
 	dpkg --add-architecture i386
 	apt install --install-recommends winehq-stable -y > /dev/null
+
+	# Install Wine multiarch
+	apt install wine64 wine32 winetricks -y
 	echo ""
 }
 
