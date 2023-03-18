@@ -28,6 +28,9 @@ function install_vbox(){
 	echo "---> Instalando Paquetes ... "
     apt install virtualbox-7.0  -y > /dev/null
 	echo ""
+
+	echo "---> Configurando  ... "
+	usermod -aG vboxusers $USER
 }
 
 echo "Instalando VirtualBox ..."
