@@ -31,11 +31,11 @@ function install_docker(){
 
 function install_compose(){
 	#Para instalar compose
-	wget -qO /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/v2.13.0/docker-compose-linux-x86_64
+	wget -qO /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64
 	chmod +x /usr/local/bin/docker-compose
 }
 
 echo "Instalando Dockers ..."
-#install_docker
+install_docker
 install_compose
 echo "Enjoy 3:)"
