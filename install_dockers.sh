@@ -21,7 +21,7 @@ function install_docker(){
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "
-	apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y > /dev/null
+	apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y > /dev/null
 	echo "---> Permisos Usuario ... "
 	groupadd docker
 	usermod -aG docker $USER
@@ -29,13 +29,29 @@ function install_docker(){
 	echo ""
 }
 
-function install_compose(){
-	#Para instalar compose
-	wget -qO /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64
-	chmod +x /usr/local/bin/docker-compose
+function install_docker_desktop(){
+	echo "---> Docker Desktop  ... "
+	wget -q https://desktop.docker.com/linux/main/amd64/docker-desktop-4.17.0-amd64.deb
+	apt sudo apt --fix-broken install ./docker-desktop-4.17.0-amd64.deb -y
+	echo "---> Eliminando Paquetes ... "
+	rm docker-desktop-4.17.0-amd64.deb
+	echo ""
 }
+
+function kvm_virtualization(){
+    kvm_type=$(lsmod | grep kvm)
+    echo "---> Instalando KVM virtualization support ${version} ... "
+    if [ ${kvm_type:0:9} == 'kvm_intel' ]; then
+        modprobe kvm_intel > /dev/null
+    else 
+        modprobe kvm_amd > /dev/null
+    fi
+	usermod -aG kvm $USER
+}
+
 
 echo "Instalando Dockers ..."
 install_docker
-install_compose
+install_docker_desktop
+kvm_virtualization
 echo "Enjoy 3:)"
