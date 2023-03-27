@@ -13,6 +13,7 @@ update > /dev/null
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
 function install_docker(){
+	echo "Instalando Dockers ..."
 	echo "---> Creando APT Source  ... "
 	text="deb ${archtype} https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	echo $text >> $source_list/docker.list
@@ -49,9 +50,29 @@ function kvm_virtualization(){
 	usermod -aG kvm $USER
 }
 
+function nvidia_container_toolkit(){
+	echo "Instalando Nvidia Container Toolkit..."
+	echo "---> Creando APT Source  ... "
+	distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+	text="deb https://nvidia.github.io/libnvidia-container/$distribution/\$(ARCH) /"
+	echo $text >> $source_list/nvidia-container-toolkit.list
+	echo "---> Docker Key ... "
+	wget -qO- https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmour -o $gpgkey_path/nvidia-container-toolkit-keyring.gpg
+	echo "---> Actualizando ... "
+	update > /dev/null
+	echo "---> Instalando Paquetes ... "
+	apt-get install -y nvidia-container-toolkit nvidia-docker2 > /dev/null
+	echo "---> Configuración NVIDIA Container Runtime ... "
+	nvidia-ctk runtime configure --runtime=docker
+	systemctl restart docker
+	docker pull nvidia/cuda:12.1.0-base-ubuntu22.04
+	echo "---> Ejecutando Test nvidia-smi ... "
+	docker run --rm --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi
 
-echo "Instalando Dockers ..."
+}
+
 install_docker
 install_docker_desktop
 kvm_virtualization
+#nvidia_container_toolkit #Experimental
 echo "Enjoy 3:)"
